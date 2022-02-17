@@ -1,6 +1,6 @@
 // 125 products
-const dataSet = [
-  "32634796",
+const data = [
+  // "32634796",
   "1700599P",
   "1700600P",
   "1998937P",
@@ -127,4 +127,4 @@ const dataSet = [
   "1257013P",
 ];
 
-export default dataSet;
+export default data
