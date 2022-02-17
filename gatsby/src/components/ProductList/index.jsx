@@ -1,4 +1,4 @@
-import React, { useState } from "React";
+import React from "react";
 import {
   Grid,
   Typography,
@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 
 const ProductList = ({ items, navigate }) => {
-  // const [search, setSearch] = useState("...");
   return (
     <Grid item md>
       <Typography variant="h5">
@@ -17,7 +16,7 @@ const ProductList = ({ items, navigate }) => {
       </Typography>
       <List sx={{ display: "flex", flexWrap: "wrap" }}>
         {items.sort().map((sku) => (
-          <ListItem disablePadding sx={{ width: 'auto' }}>
+          <ListItem key={sku} disablePadding sx={{ width: 'auto' }}>
             <ListItemButton
               onClick={() => navigate(`/product/${sku.toUpperCase()}`)}
             >

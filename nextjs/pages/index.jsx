@@ -1,11 +1,22 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Typography, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import ProductList from "../src/components/ProductList";
-// data
-import data from "../src/SKUs";
+
+const useSKUs = () => {
+  const [skus, setSkus] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3333/skus")
+      .then((response) => response.json())
+      .then(({ data }) => setSkus(data));
+  }, []);
+
+  return skus;
+};
 
 export default function Home() {
+  const data = useSKUs();
   const router = useRouter();
   return (
     <Container maxWidth="md">

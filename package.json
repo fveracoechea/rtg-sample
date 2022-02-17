@@ -1,0 +1,37 @@
+{
+  "name": "rtg-sample",
+  "version": "1.0.0",
+  "description": "RoomsToGo: Next vs Gastby",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "node ./api/server.js",
+    "build:common": "npm run build -w common",
+    "dev:next": "npm run dev -w nextjs",
+    "dev:gatsby": "npm run develop -w gatsby",
+    "build:gatsby": "npm run build -w gatsby",
+    "start:gatsby": "npm run serve -w gatsby",
+    "build:next": "npm run build -w nextjs",
+    "start:next": "npm run start -w nextjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fveracoechea/rtg-sample.git"
+  },
+  "keywords": [
+    "nextjs",
+    "gatsby",
+    "react"
+  ],
+  "author": "Francisco Veracoechea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fveracoechea/rtg-sample/issues"
+  },
+  "homepage": "https://github.com/fveracoechea/rtg-sample#readme",
+  "workspaces": [
+    "api",
+    "gatsby",
+    "nextjs"
+  ]
+}
