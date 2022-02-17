@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useQuery } from "react-query";
 import { Grid, Typography, Container } from "@mui/material";
 import { navigate } from "gatsby";
 import ProductList from "../components/ProductList";
 
-const useSKUs = () => {
-  const [skus, setSkus] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3333/skus")
-      .then((response) => response.json())
-      .then(({ data }) => setSkus(data));
-  }, []);
-
-  return skus;
-};
+const fetchSkus = () =>
+  fetch("http://localhost:3333/skus")
+    .then((response) => response.json())
+    .then(({ data }) => data);
 
 export default function Home() {
-  const data = useSKUs();
+  const { data, isLoading } = useQuery("skus", fetchSkus);
   return (
     <Container maxWidth="md">
       <Grid container sx={{ display: "block" }}>
@@ -30,7 +24,7 @@ export default function Home() {
             RTG Gatsby
           </Typography>
         </Grid>
-        <ProductList items={data} navigate={navigate} />
+        <ProductList items={data} isLoading={isLoading} navigate={navigate} />
       </Grid>
     </Container>
   );

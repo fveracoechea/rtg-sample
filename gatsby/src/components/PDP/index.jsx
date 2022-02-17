@@ -8,7 +8,7 @@ const Product = ({ pageContext: { product } }) => {
     <Container maxWidth="lg">
       <Grid container>
         <Grid component="nav" item xs={12} sx={{ my: 4 }}>
-          <Link href="/">RTG Next.js</Link>
+          <Link href="/">RTG Gatsby</Link>
         </Grid>
       </Grid>
       {product && <ProductDetail product={product} />}

@@ -8,7 +8,8 @@ import {
   ListItemText,
 } from "@mui/material";
 
-const ProductList = ({ items, navigate }) => {
+const ProductList = ({ items, isLoading, navigate }) => {
+  if (isLoading || !items) return <p>Loading...</p>
   return (
     <Grid item md>
       <Typography variant="h5">

@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useQuery } from "react-query";
 import { Grid, Typography, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import ProductList from "../src/components/ProductList";
 
-const useSKUs = () => {
-  const [skus, setSkus] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3333/skus")
-      .then((response) => response.json())
-      .then(({ data }) => setSkus(data));
-  }, []);
-
-  return skus;
-};
+const fetchSkus = () =>
+  fetch("http://localhost:3333/skus")
+    .then((response) => response.json())
+    .then(({ data }) => data);
 
 export default function Home() {
-  const data = useSKUs();
+  const { data, isLoading } = useQuery("skus", fetchSkus);
   const router = useRouter();
   return (
     <Container maxWidth="md">
@@ -31,7 +25,7 @@ export default function Home() {
             RTG Next.js
           </Typography>
         </Grid>
-        <ProductList items={data} navigate={router.push} />
+        <ProductList items={data} isLoading={isLoading} navigate={router.push} />
       </Grid>
     </Container>
   );
