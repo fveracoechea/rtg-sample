@@ -16,7 +16,7 @@ const ProductList = ({ items, isLoading, navigate }) => {
         Products: 
       </Typography>
       <List sx={{ display: "flex", flexWrap: "wrap" }}>
-        {items.sort().map((sku) => (
+        {items.map((sku) => (
           <ListItem key={sku} disablePadding sx={{ width: 'auto' }}>
             <ListItemButton
               onClick={() => navigate(`/product/${sku.toUpperCase()}`)}
