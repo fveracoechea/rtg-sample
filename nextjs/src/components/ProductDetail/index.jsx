@@ -12,7 +12,12 @@ const ProductDetail = ({ product }) => (
     <Grid item display="flex" justifyContent="center" xs={12}>
       <Box sx={{ maxWidth: "800px", minHeight: "400px" }}>
         <img
-          style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+            maxHeight: "500px",
+          }}
           src={product.primary_image}
           alt="Product"
         />
