@@ -2,9 +2,9 @@
 
 Monorepo setup with npm workspaces
 
-Build time (125 products):
+Build time (236 products):
 - Gatsby: 1m 17s
-- NextJs: 11.3s
+- NextJs: 22s
 
 ## Installation
 
