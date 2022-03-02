@@ -18,7 +18,7 @@ app.get("/skus", (req, res) => {
 app.post("/products", (req, res) => {
   storeProducts(SKUs)
     .then((data) => {
-      res.status(200).json({ data });
+      res.status(200).json(data);
     })
     .catch(catchError(res));
 });
@@ -30,7 +30,7 @@ app.get("/products", (req, res) => {
       const data = sku
         ? products.find((product) => product.sku === sku) || null
         : products;
-      res.status(200).json({ data });
+      res.status(200).json(data);
     })
     .catch(catchError(res));
 });

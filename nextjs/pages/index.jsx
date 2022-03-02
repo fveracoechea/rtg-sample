@@ -1,16 +1,24 @@
 import React from "react";
-import { useQuery } from "react-query";
 import { Grid, Typography, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import ProductList from "../src/components/ProductList";
 
-const fetchSkus = () =>
-  fetch("http://localhost:3333/skus")
-    .then((response) => response.json())
-    .then(({ data }) => data);
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: ProductPaths,
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+    revalidate: 10,
+  };
+}
 
 export default function Home() {
-  const { data, isLoading } = useQuery("skus", fetchSkus);
   const router = useRouter();
   return (
     <Container maxWidth="md">
@@ -25,7 +33,7 @@ export default function Home() {
             RTG Next.js
           </Typography>
         </Grid>
-        <ProductList items={data} isLoading={isLoading} navigate={router.push} />
+        <ProductList navigate={router.push} />
       </Grid>
     </Container>
   );
