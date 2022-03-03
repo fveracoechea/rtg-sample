@@ -21,7 +21,9 @@ export const resolvers: Resolvers = {
     /**
      * all products
      */
-    async allProducts() {
+    async allProducts(parent, args, context, info) {
+      // * setting server side cache 15 minutes
+      info.cacheControl.setCacheHint({ maxAge: 60 * 15 });
       const response = await fetch(
         isTesting
           ? `http://localhost:3333/products`

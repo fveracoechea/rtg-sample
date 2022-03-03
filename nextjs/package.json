@@ -37,6 +37,7 @@
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
     "apollo-server-micro": "^3.6.3",
+    "apollo-server-plugin-response-cache": "^3.5.1",
     "graphql": "^16.3.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",

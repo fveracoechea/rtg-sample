@@ -1,5 +1,6 @@
 import { ApolloServer } from "apollo-server-micro";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import responseCachePlugin from "apollo-server-plugin-response-cache";
 import Cors from "micro-cors";
 
 import { schema } from "../../src/apollo/schema";
@@ -7,7 +8,10 @@ import { schema } from "../../src/apollo/schema";
 const cors = Cors();
 const server = new ApolloServer({
   schema,
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
+  plugins: [
+    ApolloServerPluginLandingPageGraphQLPlayground,
+    responseCachePlugin(),
+  ],
 });
 const startServer = server.start();
 
