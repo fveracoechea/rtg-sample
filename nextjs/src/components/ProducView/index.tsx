@@ -1,12 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { Typography, Grid, Box } from "@mui/material";
-import { useQuery } from "@apollo/client";
-import { ProductDetailQuery } from "../../graphql/product";
+import { useProductDetailQuery } from "../../apollo/types/generated";
 
-const ProductDetail = ({ sku }) => {
-  const { data, loading } = useQuery(ProductDetailQuery, {
-    variables: { sku },
-  });
+type Props = {
+  sku: string;
+};
+
+const ProducView: FC<Props> = ({ sku }) => {
+  const { data, loading } = useProductDetailQuery({ variables: { sku } });
 
   if (loading || !data) {
     return <p>Loading...</p>;
@@ -46,7 +47,8 @@ const ProductDetail = ({ sku }) => {
 
       <Grid item md={4}>
         <Typography variant="body1">
-          <b>Available:</b> {product?.warehouseAvailability?.SE?.isAvailable ? "Yes" : "No"}
+          <b>Available:</b>{" "}
+          {product?.warehouseAvailability?.SE?.isAvailable ? "Yes" : "No"}
         </Typography>
         <Typography variant="body1">
           <b>SKU:</b> {product.sku}
@@ -55,11 +57,11 @@ const ProductDetail = ({ sku }) => {
           <b>Category:</b> {product.sub_category[0]}
         </Typography>
         <Typography variant="body1">
-          <b>Free Shipping:</b> {product.free_shipping ? "Yes" : "No"}
+          <b>Free Shipping:</b> {product?.free_shipping}
         </Typography>
       </Grid>
     </Grid>
   );
 };
 
-export default ProductDetail;
+export default ProducView;

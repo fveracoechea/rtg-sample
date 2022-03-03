@@ -4,7 +4,11 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 
-export default class MyDocument extends Document {
+type Props = {
+  emotionStyleTags: JSX.Element[]
+}
+
+export default class MyDocument extends Document<Props> {
   render() {
     return (
       <Html lang="en">
@@ -63,8 +67,9 @@ MyDocument.getInitialProps = async (ctx) => {
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (App) =>
-        function EnhanceApp(props) {
-          return <App emotionCache={cache} {...props} />;
+        function EnhanceApp(appProps) {
+          const props = { ...appProps, emotionCache: cache }
+          return <App {...props} />;
         },
     });
 

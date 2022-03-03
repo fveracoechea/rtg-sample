@@ -12,7 +12,8 @@
     "build:gatsby": "npm run build -w gatsby",
     "start:gatsby": "npm run serve -w gatsby",
     "build:next": "npm run build -w nextjs",
-    "start:next": "npm run start -w nextjs"
+    "start:next": "npm run start -w nextjs",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",
@@ -33,5 +34,16 @@
     "api",
     "gatsby",
     "nextjs"
-  ]
+  ],
+  "dependencies": {
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript-resolvers": "^2.5.2",
+    "graphql": "^16.3.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-codegen/typescript": "2.4.5",
+    "@graphql-codegen/typescript-operations": "2.3.2",
+    "@graphql-codegen/typescript-react-apollo": "3.2.8"
+  }
 }

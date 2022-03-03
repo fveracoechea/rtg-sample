@@ -1,18 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import { Grid, Container } from "@mui/material";
 import Link from "next/link";
-import ProductDetail from "../../src/components/ProductDetail";
+import ProductView from "../../src/components/ProducView";
 import { initializeApollo } from "../../src/apollo/client";
-import { ProductDetailQuery, ProductPaths } from "../../src/graphql/product";
+import {
+  ProductDetail,
+  AllProducts,
+} from "../../src/apollo/queries/product";
 
 // This function gets called at build time
 export async function getStaticPaths() {
   const apolloClient = initializeApollo();
   // Get the paths we want to pre-render based on products
   const { data } = await apolloClient.query({
-    query: ProductPaths,
+    query: AllProducts,
   });
-
   return {
     paths: data.allProducts.map(({ sku }) => ({
       params: { sku },
@@ -26,14 +28,12 @@ export async function getStaticPaths() {
 // revalidation is enabled and a new request comes in
 export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
-
   await apolloClient.query({
-    query: ProductDetailQuery,
+    query: ProductDetail,
     variables: {
       sku: context.params.sku,
     },
   });
-
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
@@ -43,7 +43,11 @@ export async function getStaticProps(context) {
   };
 }
 
-const Product = ({ sku }) => {
+type Props = {
+  sku: string;
+};
+
+const Product: FC<Props> = ({ sku }) => {
   return (
     <Container maxWidth="lg">
       <Grid container>
@@ -51,7 +55,7 @@ const Product = ({ sku }) => {
           <Link href="/">RTG Next.js</Link>
         </Grid>
       </Grid>
-      <ProductDetail sku={sku} />
+      <ProductView sku={sku} />
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const ProductDetailQuery = gql`
-  query ProductDetailQuery($sku: String!) {
+export const ProductDetail = gql`
+  query ProductDetail($sku: String!) {
     product(sku: $sku) {
       title
       sku
@@ -21,8 +21,8 @@ export const ProductDetailQuery = gql`
   }
 `;
 
-export const ProductPaths = gql`
-  query ProductPaths {
+export const AllProducts = gql`
+  query AllProducts {
     allProducts {
       sku
     }

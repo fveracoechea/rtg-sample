@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   Grid,
   Typography,
@@ -7,11 +7,17 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { useQuery } from "@apollo/client";
-import { ProductPaths } from "../../graphql/product";
+import {
+  useAllProductsQuery,
+  useStoreInfoQuery,
+} from "../../apollo/types/generated";
 
-const ProductList = ({ navigate }) => {
-  const { data, loading } = useQuery(ProductPaths);
+type Props = {
+  navigate: (path: string) => void;
+};
+
+const ProductList: FC<Props> = ({ navigate }) => {
+  const { data, loading } = useAllProductsQuery();
   if (loading || !data) return <p>Loading...</p>;
   return (
     <Grid item md>

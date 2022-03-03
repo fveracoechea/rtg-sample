@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
+    "codegen": "npm run graphql-codegen init"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.6.2",
     "eslint": "latest",
     "eslint-config-next": "latest"
   },
@@ -26,14 +28,16 @@
   },
   "homepage": "https://github.com/fveracoechea/rtg-sample#readme",
   "dependencies": {
+    "@apollo/client": "^3.5.10",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
+    "@graphql-tools/schema": "^8.3.2",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
     "apollo-server-micro": "^3.6.3",
-    "graphql-tools": "^8.2.0",
+    "graphql": "^16.3.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "next": "^12.1.0",

@@ -1,0 +1,86 @@
+type Lifetime {
+  count1star: String
+  count2Stars: String
+  count3Stars: String
+  count4Stars: String
+  count5Stars: String
+  negativeScore: String
+  neutralScore: String
+  overallScore: String
+  positiveScore: String
+}
+
+type Last3Months {
+  count1Star: String
+  count2Stars: String
+  count3Stars: String
+  count4Stars: String
+  count5Stars: String
+  negativeScore: String
+  neutralScore: String
+  overallScore: String
+  positiveScore: String
+}
+
+type Last30Days {
+  count1Star: String
+  count2Stars: String
+  count3Stars: String
+  count4Stars: String
+  count5Stars: String
+  negativeScore: String
+  neutralScore: String
+  overallScore: String
+  positiveScore: String
+}
+
+type Last1Year {
+  count1Star: String
+  count2Stars: String
+  count3Stars: String
+  count4Stars: String
+  count5Stars: String
+  negativeScore: String
+  neutralScore: String
+  overallScore: String
+  positiveScore: String
+}
+
+type Ratings {
+  lifetime: Lifetime
+  last3Months: Last3Months
+  last30Days: Last30Days
+  last1Year: Last1Year
+}
+
+type RegularHours {
+  dayIndex: String
+  openTime: String
+  closeTime: String
+}
+
+type Hours {
+  regularHours: [RegularHours]
+}
+
+type StoreInfo {
+  address1: String
+  city: String
+  latitude: Float
+  longitude: Float
+  state: String
+  phoneNumber: String
+  storeNumber: String
+  zipcode: String
+  storeName: String
+  temporarilyClosed: Boolean
+  timeZone: String
+  storeType: String
+  market: String
+  storeTypeId: String
+  ratings: Ratings
+  hours: Hours
+}
+
+# Types with identical fields:
+# Last3Months Last30Days Last1Year
