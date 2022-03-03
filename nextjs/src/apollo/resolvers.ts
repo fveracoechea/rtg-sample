@@ -1,13 +1,16 @@
 import { Resolvers } from "./types/generated";
 
 const isTesting = false;
+// * setting server side cache 15 minutes
+const cacheHint = { maxAge: 60 * 15 }
 
 export const resolvers: Resolvers = {
   Query: {
     /**
      * product by sku
      */
-    async product(parent, args, context) {
+    async product(parent, args, context, info) {
+      info.cacheControl.setCacheHint(cacheHint);
       const sku = args.sku.toLowerCase();
       const response = await fetch(
         isTesting
@@ -22,8 +25,7 @@ export const resolvers: Resolvers = {
      * all products
      */
     async allProducts(parent, args, context, info) {
-      // * setting server side cache 15 minutes
-      info.cacheControl.setCacheHint({ maxAge: 60 * 15 });
+      info.cacheControl.setCacheHint(cacheHint);
       const response = await fetch(
         isTesting
           ? `http://localhost:3333/products`
@@ -36,7 +38,8 @@ export const resolvers: Resolvers = {
     /**
      * store info query
      */
-    async storeInfo(parent, args) {
+    async storeInfo(parent, args, context, info) {
+      info.cacheControl.setCacheHint(cacheHint);
       const storeNumber = args.storeNumber;
       const response = await fetch(
         `https://stores.rtg-dev.com/v1/stores/${storeNumber}`
