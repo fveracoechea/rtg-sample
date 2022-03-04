@@ -2,20 +2,20 @@ import React from "react";
 import { Grid, Typography, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import { initializeApollo } from "../src/apollo/client";
-import { AllProducts } from "../src/apollo/queries/product";
-import { StoreInfo } from "../src/apollo/queries/store";
 import ProductList from "../src/components/ProductList";
 import {
   useHomepageQuery,
   HomepageDocument,
 } from "../src/apollo/types/generated";
 
+const storeNumber = "1201";
+
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
     query: HomepageDocument,
-    variables: { storeNumber: "1201" },
+    variables: { storeNumber },
   });
 
   return {
@@ -27,7 +27,7 @@ export async function getStaticProps() {
 }
 
 export default function Home() {
-  const { data } = useHomepageQuery({ variables: { storeNumber: "1201" } });
+  const { data } = useHomepageQuery({ variables: { storeNumber } });
   const router = useRouter();
   return (
     <Container maxWidth="lg">

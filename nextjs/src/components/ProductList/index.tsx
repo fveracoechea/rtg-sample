@@ -7,10 +7,7 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import {
-  useAllProductsQuery,
-  useStoreInfoQuery,
-} from "../../apollo/types/generated";
+import { useAllProductsQuery } from "../../apollo/types/generated";
 
 type Props = {
   navigate: (path: string) => void;

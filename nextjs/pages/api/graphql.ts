@@ -4,9 +4,11 @@ import responseCachePlugin from "apollo-server-plugin-response-cache";
 import Cors from "micro-cors";
 
 import { schema } from "../../src/apollo/schema";
+import { context } from "../../src/apollo/context";
 
 const cors = Cors();
 const server = new ApolloServer({
+  context,
   schema,
   plugins: [
     ApolloServerPluginLandingPageGraphQLPlayground,

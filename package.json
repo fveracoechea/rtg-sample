@@ -36,14 +36,13 @@
     "nextjs"
   ],
   "dependencies": {
-    "@graphql-codegen/cli": "^2.6.2",
-    "@graphql-codegen/typescript-resolvers": "^2.5.2",
     "graphql": "^16.3.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.6.2",
-    "@graphql-codegen/typescript": "2.4.5",
-    "@graphql-codegen/typescript-operations": "2.3.2",
-    "@graphql-codegen/typescript-react-apollo": "3.2.8"
+    "@graphql-codegen/cli": "latest",
+    "@graphql-codegen/typescript": "latest",
+    "@graphql-codegen/typescript-resolvers": "latest",
+    "@graphql-codegen/typescript-operations": "latest",
+    "@graphql-codegen/typescript-react-apollo": "latest"
   }
 }
