@@ -1,0 +1,58 @@
+type PickupHours {
+  sundayOpen: String
+  sundayClosed: String
+  mondayOpen: String
+  mondayClosed: String
+  tuesdayOpen: String
+  tuesdayClosed: String
+  wednesdayOpen: String
+  wednesdayClosed: String
+  thursdayOpen: String
+  thursdayClosed: String
+  fridayOpen: String
+  fridayClosed: String
+  saturdayOpen: String
+  saturdayClosed: String
+}
+
+type StoreHours {
+  sundayOpen: String
+  sundayClosed: String
+  mondayOpen: String
+  mondayClosed: String
+  tuesdayOpen: String
+  tuesdayClosed: String
+  wednesdayOpen: String
+  wednesdayClosed: String
+  thursdayOpen: String
+  thursdayClosed: String
+  fridayOpen: String
+  fridayClosed: String
+  saturdayOpen: String
+  saturdayClosed: String
+}
+
+type StoreFeed {
+  storeNumber: String
+  id: String
+  division: String
+  hoursType: String
+  address1: String
+  address2: String
+  city: String
+  closeDate: String
+  latitude: String
+  longitude: String
+  openDate: String
+  phone: String
+  state: String
+  statusTypeId: String
+  storeTypeId: String
+  zip: String
+  storeName: String
+  primaryStore: String
+  regionalManagerEmailAddress: String
+  market: String
+  pickup_hours: PickupHours
+  store_hours: StoreHours
+}

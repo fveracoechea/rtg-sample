@@ -137,6 +137,24 @@ export type OnSale = {
   TX_6?: Maybe<Scalars['Boolean']>;
 };
 
+export type PickupHours = {
+  __typename?: 'PickupHours';
+  fridayClosed?: Maybe<Scalars['String']>;
+  fridayOpen?: Maybe<Scalars['String']>;
+  mondayClosed?: Maybe<Scalars['String']>;
+  mondayOpen?: Maybe<Scalars['String']>;
+  saturdayClosed?: Maybe<Scalars['String']>;
+  saturdayOpen?: Maybe<Scalars['String']>;
+  sundayClosed?: Maybe<Scalars['String']>;
+  sundayOpen?: Maybe<Scalars['String']>;
+  thursdayClosed?: Maybe<Scalars['String']>;
+  thursdayOpen?: Maybe<Scalars['String']>;
+  tuesdayClosed?: Maybe<Scalars['String']>;
+  tuesdayOpen?: Maybe<Scalars['String']>;
+  wednesdayClosed?: Maybe<Scalars['String']>;
+  wednesdayOpen?: Maybe<Scalars['String']>;
+};
+
 export type Pricing = {
   __typename?: 'Pricing';
   FL_0_list_price?: Maybe<Scalars['Float']>;
@@ -239,14 +257,20 @@ export type Product = {
 
 export type Query = {
   __typename?: 'Query';
-  allProducts?: Maybe<Array<Product>>;
+  allProducts: Array<Product>;
   product?: Maybe<Product>;
+  storeFeed: Array<Maybe<StoreFeed>>;
   storeInfo?: Maybe<StoreInfo>;
 };
 
 
 export type QueryProductArgs = {
   sku: Scalars['String'];
+};
+
+
+export type QueryStoreFeedArgs = {
+  input?: InputMaybe<StoreFeedInput>;
 };
 
 
@@ -281,6 +305,57 @@ export type ShippingCostCode = {
   __typename?: 'ShippingCostCode';
   SE?: Maybe<Scalars['String']>;
   TX?: Maybe<Scalars['String']>;
+};
+
+export type StoreFeed = {
+  __typename?: 'StoreFeed';
+  address1?: Maybe<Scalars['String']>;
+  address2?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  closeDate?: Maybe<Scalars['String']>;
+  division?: Maybe<Scalars['String']>;
+  hoursType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  latitude?: Maybe<Scalars['String']>;
+  longitude?: Maybe<Scalars['String']>;
+  market?: Maybe<Scalars['String']>;
+  openDate?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  pickup_hours?: Maybe<PickupHours>;
+  primaryStore?: Maybe<Scalars['String']>;
+  regionalManagerEmailAddress?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  statusTypeId?: Maybe<Scalars['String']>;
+  storeName?: Maybe<Scalars['String']>;
+  storeNumber?: Maybe<Scalars['String']>;
+  storeTypeId?: Maybe<Scalars['String']>;
+  store_hours?: Maybe<StoreHours>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+export type StoreFeedInput = {
+  city?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  state?: InputMaybe<Scalars['String']>;
+  storeTypeId?: InputMaybe<Scalars['String']>;
+};
+
+export type StoreHours = {
+  __typename?: 'StoreHours';
+  fridayClosed?: Maybe<Scalars['String']>;
+  fridayOpen?: Maybe<Scalars['String']>;
+  mondayClosed?: Maybe<Scalars['String']>;
+  mondayOpen?: Maybe<Scalars['String']>;
+  saturdayClosed?: Maybe<Scalars['String']>;
+  saturdayOpen?: Maybe<Scalars['String']>;
+  sundayClosed?: Maybe<Scalars['String']>;
+  sundayOpen?: Maybe<Scalars['String']>;
+  thursdayClosed?: Maybe<Scalars['String']>;
+  thursdayOpen?: Maybe<Scalars['String']>;
+  tuesdayClosed?: Maybe<Scalars['String']>;
+  tuesdayOpen?: Maybe<Scalars['String']>;
+  wednesdayClosed?: Maybe<Scalars['String']>;
+  wednesdayOpen?: Maybe<Scalars['String']>;
 };
 
 export type StoreInfo = {
@@ -346,7 +421,7 @@ export type HomepageQueryVariables = Exact<{
 }>;
 
 
-export type HomepageQuery = { __typename?: 'Query', storeInfo?: { __typename?: 'StoreInfo', address1?: string | null, city?: string | null, storeName?: string | null, state?: string | null } | null, allProducts?: Array<{ __typename?: 'Product', sku?: string | null }> | null };
+export type HomepageQuery = { __typename?: 'Query', storeInfo?: { __typename?: 'StoreInfo', address1?: string | null, city?: string | null, storeName?: string | null, state?: string | null } | null, allProducts: Array<{ __typename?: 'Product', sku?: string | null }> };
 
 export type ProductDetailQueryVariables = Exact<{
   sku: Scalars['String'];
@@ -358,7 +433,7 @@ export type ProductDetailQuery = { __typename?: 'Query', product?: { __typename?
 export type AllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllProductsQuery = { __typename?: 'Query', allProducts?: Array<{ __typename?: 'Product', sku?: string | null }> | null };
+export type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'Product', sku?: string | null }> };
 
 export type StoreInfoQueryVariables = Exact<{
   storeNumber: Scalars['String'];
@@ -612,6 +687,7 @@ export type ResolversTypes = {
   Last30Days: ResolverTypeWrapper<Last30Days>;
   Lifetime: ResolverTypeWrapper<Lifetime>;
   OnSale: ResolverTypeWrapper<OnSale>;
+  PickupHours: ResolverTypeWrapper<PickupHours>;
   Pricing: ResolverTypeWrapper<Pricing>;
   Product: ResolverTypeWrapper<Product>;
   Query: ResolverTypeWrapper<{}>;
@@ -619,6 +695,9 @@ export type ResolversTypes = {
   RegularHours: ResolverTypeWrapper<RegularHours>;
   Se: ResolverTypeWrapper<Se>;
   ShippingCostCode: ResolverTypeWrapper<ShippingCostCode>;
+  StoreFeed: ResolverTypeWrapper<StoreFeed>;
+  StoreFeedInput: StoreFeedInput;
+  StoreHours: ResolverTypeWrapper<StoreHours>;
   StoreInfo: ResolverTypeWrapper<StoreInfo>;
   Strikethrough: ResolverTypeWrapper<Strikethrough>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -643,6 +722,7 @@ export type ResolversParentTypes = {
   Last30Days: Last30Days;
   Lifetime: Lifetime;
   OnSale: OnSale;
+  PickupHours: PickupHours;
   Pricing: Pricing;
   Product: Product;
   Query: {};
@@ -650,6 +730,9 @@ export type ResolversParentTypes = {
   RegularHours: RegularHours;
   Se: Se;
   ShippingCostCode: ShippingCostCode;
+  StoreFeed: StoreFeed;
+  StoreFeedInput: StoreFeedInput;
+  StoreHours: StoreHours;
   StoreInfo: StoreInfo;
   Strikethrough: Strikethrough;
   String: Scalars['String'];
@@ -778,6 +861,24 @@ export type OnSaleResolvers<ContextType = any, ParentType extends ResolversParen
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type PickupHoursResolvers<ContextType = any, ParentType extends ResolversParentTypes['PickupHours'] = ResolversParentTypes['PickupHours']> = {
+  fridayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  fridayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  mondayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  mondayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  saturdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  saturdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  sundayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  sundayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  thursdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  thursdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tuesdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tuesdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  wednesdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  wednesdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type PricingResolvers<ContextType = any, ParentType extends ResolversParentTypes['Pricing'] = ResolversParentTypes['Pricing']> = {
   FL_0_list_price?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   FL_0_sale_price?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
@@ -879,8 +980,9 @@ export type ProductResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  allProducts?: Resolver<Maybe<Array<ResolversTypes['Product']>>, ParentType, ContextType>;
+  allProducts?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType>;
   product?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductArgs, 'sku'>>;
+  storeFeed?: Resolver<Array<Maybe<ResolversTypes['StoreFeed']>>, ParentType, ContextType, Partial<QueryStoreFeedArgs>>;
   storeInfo?: Resolver<Maybe<ResolversTypes['StoreInfo']>, ParentType, ContextType, RequireFields<QueryStoreInfoArgs, 'storeNumber'>>;
 };
 
@@ -910,6 +1012,50 @@ export type SeResolvers<ContextType = any, ParentType extends ResolversParentTyp
 export type ShippingCostCodeResolvers<ContextType = any, ParentType extends ResolversParentTypes['ShippingCostCode'] = ResolversParentTypes['ShippingCostCode']> = {
   SE?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   TX?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type StoreFeedResolvers<ContextType = any, ParentType extends ResolversParentTypes['StoreFeed'] = ResolversParentTypes['StoreFeed']> = {
+  address1?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  address2?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  city?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  closeDate?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  division?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  hoursType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  latitude?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  longitude?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  market?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  openDate?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  phone?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  pickup_hours?: Resolver<Maybe<ResolversTypes['PickupHours']>, ParentType, ContextType>;
+  primaryStore?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  regionalManagerEmailAddress?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  state?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  statusTypeId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  storeName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  storeNumber?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  storeTypeId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  store_hours?: Resolver<Maybe<ResolversTypes['StoreHours']>, ParentType, ContextType>;
+  zip?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type StoreHoursResolvers<ContextType = any, ParentType extends ResolversParentTypes['StoreHours'] = ResolversParentTypes['StoreHours']> = {
+  fridayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  fridayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  mondayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  mondayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  saturdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  saturdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  sundayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  sundayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  thursdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  thursdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tuesdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tuesdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  wednesdayClosed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  wednesdayOpen?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -983,6 +1129,7 @@ export type Resolvers<ContextType = any> = {
   Last30Days?: Last30DaysResolvers<ContextType>;
   Lifetime?: LifetimeResolvers<ContextType>;
   OnSale?: OnSaleResolvers<ContextType>;
+  PickupHours?: PickupHoursResolvers<ContextType>;
   Pricing?: PricingResolvers<ContextType>;
   Product?: ProductResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
@@ -990,6 +1137,8 @@ export type Resolvers<ContextType = any> = {
   RegularHours?: RegularHoursResolvers<ContextType>;
   Se?: SeResolvers<ContextType>;
   ShippingCostCode?: ShippingCostCodeResolvers<ContextType>;
+  StoreFeed?: StoreFeedResolvers<ContextType>;
+  StoreHours?: StoreHoursResolvers<ContextType>;
   StoreInfo?: StoreInfoResolvers<ContextType>;
   Strikethrough?: StrikethroughResolvers<ContextType>;
   Tx?: TxResolvers<ContextType>;

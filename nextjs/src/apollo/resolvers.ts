@@ -23,6 +23,12 @@ export const resolvers: Resolvers<Context> = {
       const storeNumber = args.storeNumber;
       return ctx.storeAPI.getStoreInfo(storeNumber);
     },
+    /**
+     * Store hours feed
+     */
+    async storeFeed(parent, args, ctx) {
+      return ctx.storeAPI.getStoreFeed(args.input)
+    }
   },
   /**
    * Product field resolvers
