@@ -1,4 +1,4 @@
-import { Resolvers } from "./types/generated";
+import { Resolvers } from "../generated";
 import { Context } from "./context";
 
 export const resolvers: Resolvers<Context> = {

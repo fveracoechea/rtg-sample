@@ -3,8 +3,8 @@ import {
   RESTDataSource,
   RequestOptions,
 } from "apollo-datasource-rest";
-import { filterBy } from "../../helpers/data";
-import { StoreFeed } from "../types/generated";
+import { filterBy } from "../../../helpers/data";
+import { StoreFeed } from "../../generated";
 
 
 class StoreService extends RESTDataSource {

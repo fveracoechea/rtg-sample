@@ -1,8 +1,8 @@
 overwrite: true
 schema: "http://localhost:3001/api/graphql"
-documents: "nextjs/src/apollo/queries/*.ts"
+documents: "nextjs/apollo/client/queries/*.ts"
 generates:
-  nextjs/src/apollo/types/generated.tsx:
+  nextjs/apollo/generated.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"

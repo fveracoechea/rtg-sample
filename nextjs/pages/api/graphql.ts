@@ -3,8 +3,8 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 import responseCachePlugin from "apollo-server-plugin-response-cache";
 import Cors from "micro-cors";
 
-import { schema } from "../../src/apollo/schema";
-import { context } from "../../src/apollo/context";
+import { schema } from "../../apollo/server/schema";
+import { context } from "../../apollo/server/context";
 
 const cors = Cors();
 const server = new ApolloServer({

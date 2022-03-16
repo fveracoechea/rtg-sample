@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { Grid, Container } from "@mui/material";
 import Link from "next/link";
-import ProductView from "../../src/components/ProducView";
-import { initializeApollo } from "../../src/apollo/client";
+import ProductView from "../../components/ProducView";
+import { initializeApollo } from "../../apollo/client/client";
 import {
   ProductDetail,
   AllProducts,
-} from "../../src/apollo/queries/product";
+} from "../../apollo/client/queries/product";
 
 // This function gets called at build time
 export async function getStaticPaths() {

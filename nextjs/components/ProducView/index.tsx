@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Typography, Grid, Box } from "@mui/material";
-import { useProductDetailQuery } from "../../apollo/types/generated";
+import { useProductDetailQuery } from "../../apollo/generated";
 
 type Props = {
   sku: string;

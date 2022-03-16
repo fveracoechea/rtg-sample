@@ -1,8 +1,8 @@
 
 import { useMemo } from 'react'
 import { ApolloClient, InMemoryCache } from '@apollo/client'
-import { schema } from './schema'
-import { context } from './context'
+import { schema } from '../server/schema'
+import { context } from '../server/context'
 
 let apolloClient
 

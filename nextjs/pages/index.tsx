@@ -1,12 +1,12 @@
 import React from "react";
 import { Grid, Typography, Container } from "@mui/material";
 import { useRouter } from "next/router";
-import { initializeApollo } from "../src/apollo/client";
-import ProductList from "../src/components/ProductList";
+import { initializeApollo } from "../apollo/client/client";
+import ProductList from "../components/ProductList";
 import {
   useHomepageQuery,
   HomepageDocument,
-} from "../src/apollo/types/generated";
+} from "../apollo/generated";
 
 const storeNumber = "1201";
 
